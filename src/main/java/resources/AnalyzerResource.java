@@ -1,10 +1,10 @@
 package resources;
 
+import domain.IWordFrequencyAnalyzer;
 import domain.WordFrequency;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
-import services.AnalyzerService;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class AnalyzerResource {
 
     @Inject
-    private AnalyzerService analyzerService;
+    private IWordFrequencyAnalyzer analyzerService;
 
     @POST
     @Produces(MediaType.TEXT_PLAIN)
@@ -26,7 +26,7 @@ public class AnalyzerResource {
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.TEXT_PLAIN)
     @Path("frequency/{word}")
-    public int calculateFrequencyForWord(@PathParam("word") final String word, final String text) {
+    public int calculateFrequencyForWord(final String text, @PathParam("word") final String word) {
         return analyzerService.calculateFrequencyForWord(text, word);
     }
 
@@ -34,7 +34,7 @@ public class AnalyzerResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.TEXT_PLAIN)
     @Path("most-frequent-n-words/{n}")
-    public List<WordFrequency> calculateMostFrequentNWords(@PathParam("n") final int n, final String text) {
+    public List<WordFrequency> calculateMostFrequentNWords(final String text, @PathParam("n") final int n) {
         return analyzerService.calculateMostFrequentNWords(text, n);
     }
 }

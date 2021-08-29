@@ -1,7 +1,7 @@
 package services;
 
 import domain.WordFrequency;
-import domain.WordFrequencyAnalyzer;
+import domain.IWordFrequencyAnalyzer;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.Arrays;
@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
-public class AnalyzerService implements WordFrequencyAnalyzer {
-
+public class AnalyzerService implements IWordFrequencyAnalyzer {
 
     @Override
     public int calculateHighestFrequency(final String text) {

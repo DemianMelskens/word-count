@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-public interface WordFrequencyAnalyzer {
+public interface IWordFrequencyAnalyzer {
 
     int calculateHighestFrequency(String text);
 
